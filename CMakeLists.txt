@@ -8,15 +8,16 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+
 find_package(omxcam REQUIRED)
-
 include_directories(${OMXCAM_INCLUDE_DIRS})
-
 link_directories(${OMXCAM_LIBRARY_DIRS})
 
+add_definitions(-DOMX_SKIP64BIT)
+
 add_executable(picam_node src/picam_node.cpp)
-ament_target_dependencies(picam_node rclcpp std_msgs)
+ament_target_dependencies(picam_node rclcpp sensor_msgs)
 
 install(TARGETS
   picam_node
