@@ -18,11 +18,16 @@ add_definitions(-DOMX_SKIP64BIT)
 
 add_executable(picam_node src/picam_node.cpp)
 ament_target_dependencies(picam_node rclcpp sensor_msgs)
+target_link_libraries(picam_node ${OMXCAM_LIBRARIES})
+
+add_executable(video_node src/video_node.cpp)
+ament_target_dependencies(video_node rclcpp sensor_msgs)
+target_link_libraries(video_node ${OMXCAM_LIBRARIES})
 
 install(TARGETS
-  picam_node
+  picam_node video_node
   DESTINATION lib/${PROJECT_NAME}
 )
-target_link_libraries(picam_node ${OMXCAM_LIBRARIES})
+
 
 ament_package()

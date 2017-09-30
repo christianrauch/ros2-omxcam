@@ -12,6 +12,8 @@ public:
         pub_img(create_publisher<sensor_msgs::msg::CompressedImage>("image/compressed"))
     {
         omxcam_still_init (&settings);
+        settings.camera.width = 640;
+        settings.camera.height = 480;
 
         // void (*on_data)(omxcam_buffer_t buffer);
         //settings.on_data = std::bind(&OMXCamPublisher::onData, this, std::placeholders::_1);
